@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "author": "equipe 2 - subgrupo 4",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "pico",
+      "top": 275.15,
+      "left": 406.75,
+      "attrs": { "builder": "pico-sdk" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 483.14,
+      "left": 288.23,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 442.36, "left": 211.2, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 294.2,
+      "left": 278.4,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": 373.4,
+      "left": 259.5,
+      "rotate": 270,
+      "attrs": { "common": "cathode" }
+    },
+    { "type": "wokwi-analog-joystick", "id": "joystick1", "top": 249, "left": 533.4,"rotate":90, "attrs": {} }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "btn1:1.r", "pico:GP5", "green", [ "v0", "h38.6", "v19.2" ] ],
+    [ "btn1:2.r", "pico:GND.2", "green", [ "h29", "v29" ] ],
+    [ "rgb1:COM", "pico:GND.5", "black", [ "v-0.1", "h172.9", "v38.36" ] ],
+    [ "rgb1:R", "pico:GP13", "red", [ "h28.8", "v19.16" ] ],
+    [ "rgb1:G", "pico:GP11", "green", [ "v-1.3", "h39.7", "v19.2" ] ],
+    [ "rgb1:B", "pico:GP12", "blue", [ "v0", "h49.6", "v-48" ] ],
+    [ "oled1:VCC", "vcc1:VCC", "red", [ "v-19.2", "h-115.05" ] ],
+    [ "oled1:GND", "pico:GND.4", "black", [ "v0" ] ],
+    [ "oled1:SCL", "pico:GP15", "green", [ "v-19.2", "h0.3" ] ],
+    [ "oled1:SDA", "pico:GP14", "blue", [ "v-28.8", "h0.07" ] ],
+    [ "pico:3V3", "joystick1:VCC", "violet", [ "h38.71", "v48", "h48" ] ],
+    [ "pico:GP27", "joystick1:VERT", "gold", [ "h29.11", "v19.2", "h67.2" ] ],
+    [ "pico:GP26", "joystick1:HORZ", "gold", [ "h19.51", "v19.2", "h86.4" ] ],
+    [ "pico:GP22", "joystick1:SEL", "gray", [ "h9.91", "v9.6", "h105.6" ] ],
+    [ "pico:GND.5", "joystick1:GND", "black", [ "h0" ] ]
+  ],
+  "serialMonitor": { "display": "auto", "newline": "lf" },
+  "dependencies": {}
+}
